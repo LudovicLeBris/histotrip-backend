@@ -33,6 +33,9 @@ class Picture
     #[ORM\Column]
     private ?bool $is_main = null;
 
+    #[ORM\ManyToOne(inversedBy: 'pictures')]
+    private ?Place $place = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +109,18 @@ class Picture
     public function setMain(bool $is_main): static
     {
         $this->is_main = $is_main;
+
+        return $this;
+    }
+
+    public function getPlace(): ?Place
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Place $place): static
+    {
+        $this->place = $place;
 
         return $this;
     }
