@@ -93,6 +93,12 @@ class Place
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place')]
     private Collection $pictures;
 
+    #[ORM\Column]
+    private ?float $latitude = null;
+
+    #[ORM\Column]
+    private ?float $longitude = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
