@@ -62,16 +62,16 @@ class Place
     private ?bool $accessibility = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $guided_tour = null;
+    private ?bool $guidedTour = null;
 
     #[ORM\Column]
-    private ?bool $is_valid = null;
+    private ?bool $isValid = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updated_at = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 128)]
     private ?string $slug = null;
@@ -268,48 +268,48 @@ class Place
 
     public function isGuidedTour(): ?bool
     {
-        return $this->guided_tour;
+        return $this->guidedTour;
     }
 
-    public function setGuidedTour(?bool $guided_tour): static
+    public function setGuidedTour(?bool $guidedTour): static
     {
-        $this->guided_tour = $guided_tour;
+        $this->guidedTour = $guidedTour;
 
         return $this;
     }
 
     public function isValid(): ?bool
     {
-        return $this->is_valid;
+        return $this->isValid;
     }
 
-    public function setValid(bool $is_valid): static
+    public function setIsValid(bool $isValid): static
     {
-        $this->is_valid = $is_valid;
+        $this->isValid = $isValid;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

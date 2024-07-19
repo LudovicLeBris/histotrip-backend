@@ -150,7 +150,7 @@ class AppProvider
             "accessibility" => null, 
             "guided_tour" => null, 
             "isValid" => 1,
-            "slug" => "memorial-de-verdun-Champ-de-Bataille",
+            "slug" => "memorial-de-verdun-champ-de-bataille",
             "picture" => [
                 "url" => "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/M%C3%A9morial_de_Verdun_nouveau.jpg/1920px-M%C3%A9morial_de_Verdun_nouveau.jpg",
                 "picture_legend" => "Vue extérieure du Mémorial de Verdun après sa rénovation en 2016/Jean-Marie Mangeot — © Mémorial de Verdun/CC BY-SA 3.0",
@@ -216,7 +216,7 @@ class AppProvider
             "accessibility" => null, 
             "guided_tour" => null,
             "isValid" => 1,
-            "slug" => "chateau-de-Beynac",
+            "slug" => "chateau-de-beynac",
             "picture" => [
                 "url" => "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Ch%C3%A2teau_de_Beynac_%28Dordogne%29.jpg/1920px-Ch%C3%A2teau_de_Beynac_%28Dordogne%29.jpg",
                 "picture_legend" => "Le château de Beynac/Gentil Hibou — Travail personnel/CC BY-SA 3.0",

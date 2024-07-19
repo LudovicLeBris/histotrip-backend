@@ -26,19 +26,19 @@ class Picture
     private ?string $name = null;
 
     #[ORM\Column(length: 128)]
-    private ?string $picture_legend = null;
+    private ?string $pictureLegend = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $cdn_url = null;
+    private ?string $cdnUrl = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updated_at = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
-    private ?bool $is_main = null;
+    private ?bool $isMain = null;
 
     #[ORM\ManyToOne(inversedBy: 'pictures')]
     private ?Place $place = null;
@@ -62,60 +62,60 @@ class Picture
 
     public function getPictureLegend(): ?string
     {
-        return $this->picture_legend;
+        return $this->pictureLegend;
     }
 
-    public function setPictureLegend(string $picture_legend): static
+    public function setPictureLegend(string $pictureLegend): static
     {
-        $this->picture_legend = $picture_legend;
+        $this->pictureLegend = $pictureLegend;
 
         return $this;
     }
 
     public function getCdnUrl(): ?string
     {
-        return $this->cdn_url;
+        return $this->cdnUrl;
     }
 
-    public function setCdnUrl(string $cdn_url): static
+    public function setCdnUrl(string $cdnUrl): static
     {
-        $this->cdn_url = $cdn_url;
+        $this->cdnUrl = $cdnUrl;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     public function isMain(): ?bool
     {
-        return $this->is_main;
+        return $this->isMain;
     }
 
-    public function setMain(bool $is_main): static
+    public function setIsMain(bool $isMain): static
     {
-        $this->is_main = $is_main;
+        $this->isMain = $isMain;
 
         return $this;
     }

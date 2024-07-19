@@ -68,7 +68,7 @@ class AppFixtures extends Fixture
             $place->setRating($faker->randomFloat(1, 1, 5));
             $place->setAccessibility($dataPlace['accessibility']);
             $place->setGuidedTour($dataPlace['guided_tour']);
-            $place->setValid($dataPlace['isValid']);
+            $place->setIsValid($dataPlace['isValid']);
             $place->setSlug($dataPlace['slug']);
             $place->setCreatedAt(new \DateTimeImmutable($faker->date()));
 
@@ -81,7 +81,7 @@ class AppFixtures extends Fixture
             $picture->setName($place->getName());
             $picture->setPictureLegend($dataPlace['picture']['picture_legend']);
             $picture->setCdnUrl($dataPlace['picture']['url']);
-            $picture->setMain($dataPlace['picture']['isMain']);
+            $picture->setIsMain($dataPlace['picture']['isMain']);
             $picture->setCreatedAt(new \DateTimeImmutable($faker->date()));
             $manager->persist($picture);
 
