@@ -106,6 +106,9 @@ class Place
     #[ORM\Column]
     private ?float $longitude = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $website = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -445,6 +448,18 @@ class Place
     public function setLongitude(float $longitude): static
     {
         $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): static
+    {
+        $this->website = $website;
 
         return $this;
     }
