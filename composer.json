@@ -28,7 +28,8 @@
         "symfony/serializer": "7.1.*",
         "symfony/twig-bundle": "7.1.*",
         "symfony/validator": "7.1.*",
-        "symfony/yaml": "7.1.*"
+        "symfony/yaml": "7.1.*",
+        "symfony/maker-bundle": "^1.60"
     },
     "config": {
         "allow-plugins": {
@@ -82,7 +83,6 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.6",
-        "fakerphp/faker": "^1.23",
-        "symfony/maker-bundle": "^1.60"
+        "fakerphp/faker": "^1.23"
     }
 }
