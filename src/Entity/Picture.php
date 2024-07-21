@@ -15,7 +15,7 @@ class Picture
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 128)]
@@ -23,7 +23,7 @@ class Picture
     private ?string $pictureLegend = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?string $cdnUrl = null;
 
     #[ORM\Column]
@@ -33,7 +33,7 @@ class Picture
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?bool $isMain = null;
 
     #[ORM\ManyToOne(inversedBy: 'pictures')]
@@ -104,7 +104,7 @@ class Picture
         return $this;
     }
 
-    public function isMain(): ?bool
+    public function getIsMain(): ?bool
     {
         return $this->isMain;
     }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -15,11 +17,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
 #[ApiResource(
     operations: [
-        new Get(),
-        new GetCollection(),
+        new Get(
+            normalizationContext: ['groups' => ['place']]
+        ),
+        new GetCollection(
+            normalizationContext: ['groups' => ['places']],
+        ),
     ],
-    normalizationContext: ['groups' => ['place']]
 )]
+#[ApiFilter(BooleanFilter::class, properties: ['pictures.isMain'])]
 class Place
 {
     #[ORM\Id]
@@ -28,11 +34,11 @@ class Place
     private ?int $id = null;
 
     #[ORM\Column(length: 128)]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 128, nullable: true)]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?string $subtitle = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -80,7 +86,7 @@ class Place
     private ?bool $guidedTour = null;
 
     #[ORM\Column]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?bool $isValid = null;
 
     #[ORM\Column]
@@ -92,14 +98,14 @@ class Place
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 128)]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private ?string $slug = null;
 
     /**
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'places')]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private Collection $categories;
 
     /**
@@ -120,7 +126,7 @@ class Place
      * @var Collection<int, Picture>
      */
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place')]
-    #[Groups('place')]
+    #[Groups(['place', 'places'])]
     private Collection $pictures;
 
     #[ORM\Column]
