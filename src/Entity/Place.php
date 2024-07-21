@@ -10,13 +10,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
 #[ApiResource(
     operations: [
         new Get(),
         new GetCollection(),
-    ]
+    ],
+    normalizationContext: ['groups' => ['place']]
 )]
 class Place
 {
@@ -26,87 +28,111 @@ class Place
     private ?int $id = null;
 
     #[ORM\Column(length: 128)]
+    #[Groups('place')]
     private ?string $name = null;
 
     #[ORM\Column(length: 128, nullable: true)]
+    #[Groups('place')]
     private ?string $subtitle = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('place')]
     private ?string $address = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups('place')]
     private ?string $postcode = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups('place')]
     private ?string $city = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups('place')]
     private ?string $country = null;
 
     #[ORM\Column(length: 64, nullable: true)]
+    #[Groups('place')]
     private ?string $phone = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups('place')]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('place')]
     private ?string $price = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('place')]
     private ?string $opening_hours = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('place')]
     private ?float $rating = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('place')]
     private ?bool $accessibility = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('place')]
     private ?bool $guidedTour = null;
 
     #[ORM\Column]
+    #[Groups('place')]
     private ?bool $isValid = null;
 
     #[ORM\Column]
+    #[Groups('place')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('place')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 128)]
+    #[Groups('place')]
     private ?string $slug = null;
 
     /**
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'places')]
+    #[Groups('place')]
     private Collection $categories;
 
     /**
      * @var Collection<int, Century>
      */
     #[ORM\ManyToMany(targetEntity: Century::class, inversedBy: 'places')]
+    #[Groups('place')]
     private Collection $centuries;
 
     /**
      * @var Collection<int, Tag>
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'places')]
+    #[Groups('place')]
     private Collection $tags;
 
     /**
      * @var Collection<int, Picture>
      */
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place')]
+    #[Groups('place')]
     private Collection $pictures;
 
     #[ORM\Column]
+    #[Groups('place')]
     private ?float $latitude = null;
 
     #[ORM\Column]
+    #[Groups('place')]
     private ?float $longitude = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('place')]
     private ?string $website = null;
 
     public function __construct()

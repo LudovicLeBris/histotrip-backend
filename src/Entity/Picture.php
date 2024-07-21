@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
 #[ApiResource(
@@ -23,12 +24,15 @@ class Picture
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups('place')]
     private ?string $name = null;
 
     #[ORM\Column(length: 128)]
+    #[Groups('place')]
     private ?string $pictureLegend = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('place')]
     private ?string $cdnUrl = null;
 
     #[ORM\Column]
@@ -38,6 +42,7 @@ class Picture
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
+    #[Groups('place')]
     private ?bool $isMain = null;
 
     #[ORM\ManyToOne(inversedBy: 'pictures')]
