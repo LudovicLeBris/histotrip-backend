@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\CenturyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,8 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: CenturyRepository::class)]
 #[ApiResource(
     operations: [
-        new Get(),
-        new GetCollection(),
+        new GetCollection(normalizationContext: ['groups' => ['centuries']]),
     ]
 )]
 class Century
@@ -26,11 +24,11 @@ class Century
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups('place')]
+    #[Groups(['place', 'centuries'])]
     private ?string $century = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups('place')]
+    #[Groups(['place', 'centuries'])]
     private ?string $period = null;
 
     #[ORM\Column]

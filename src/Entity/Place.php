@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -25,7 +27,26 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
     ],
 )]
+#[ApiResource(
+    openapiContext: ['summary' => 'Retrieves the collection of Place resources by category.'],
+    uriTemplate: '/categories/{categoryId}/places',
+    uriVariables: ['categoryId' => new Link(fromClass: Category::class, toProperty: 'categories', description: 'Category identifier')],
+    operations: [ new GetCollection(normalizationContext: ['groups' => ['places']]) ],
+)]
+#[ApiResource(
+    openapiContext: ['summary' => 'Retrieves the collection of Place resources by century.'],
+    uriTemplate: '/centuries/{centuryId}/places',
+    uriVariables: ['centuryId' => new Link(fromClass: Century::class, toProperty: 'centuries', description: 'Century identifier')],
+    operations: [ new GetCollection(normalizationContext: ['groups' => ['places']]) ],
+)]
+#[ApiResource(
+    openapiContext: ['summary' => 'Retrieves the collection of Place resources by tag.'],
+    uriTemplate: '/tags/{tagId}/places',
+    uriVariables: ['tagId' => new Link(fromClass: Tag::class, toProperty: 'tags', description: 'Tag identifier')],
+    operations: [ new GetCollection(normalizationContext: ['groups' => ['places']]) ],
+)]
 #[ApiFilter(BooleanFilter::class, properties: ['pictures.isMain'])]
+#[ApiFilter(SearchFilter::class, properties: ['centuries.period'], strategy: 'exact')]
 class Place
 {
     #[ORM\Id]

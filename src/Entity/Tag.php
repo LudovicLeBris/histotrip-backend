@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,8 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 #[ApiResource(
     operations: [
-        new Get(),
-        new GetCollection(),
+        new GetCollection(normalizationContext: ['groups' => ['tags']]),
     ]
 )]
 class Tag
@@ -26,7 +24,7 @@ class Tag
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups('place')]
+    #[Groups(['place', 'tags'])]
     private ?string $name = null;
 
     #[ORM\Column]
