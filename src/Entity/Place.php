@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
+use App\Filter\CoordinateFilter;
 use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -47,6 +48,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 #[ApiFilter(BooleanFilter::class, properties: ['pictures.isMain'])]
 #[ApiFilter(SearchFilter::class, properties: ['centuries.period'], strategy: 'exact')]
+#[ApiFilter(CoordinateFilter::class)]
 class Place
 {
     #[ORM\Id]
