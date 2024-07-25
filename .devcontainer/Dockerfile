@@ -20,7 +20,7 @@ RUN install-php-extensions \
     bcmath \
     gd \
     intl \
-    pdo_pgsql \
+    pdo_mysql \
     zip
 
 # Composer
