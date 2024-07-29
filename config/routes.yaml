@@ -3,3 +3,14 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+root:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: app_admin_home
+        page: 'index'
+        permanent: true
+        keepQueryParams: false
+        keepRequestMethod: false
+        ignoreAttributes: true
