@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlaceController!{% endblock %}
+
+{% block body %}
+<ul>
+    {% for place in places %}
+    <li>{{ place.name }}</li>
+    {% endfor %}
+</ul>
+    
+{% endblock %}
