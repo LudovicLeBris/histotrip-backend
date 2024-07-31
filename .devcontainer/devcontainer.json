@@ -9,7 +9,8 @@
             "extensions": [
                 "EditorConfig.EditorConfig",
                 "bmewburn.vscode-intelephense-client",
-                "xdebug.php-debug"
+                "xdebug.php-debug",
+                "bradlc.vscode-tailwindcss"
             ]
         }
     },
