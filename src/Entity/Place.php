@@ -94,7 +94,7 @@ class Place
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups('place')]
-    private ?string $opening_hours = null;
+    private ?string $openingHours = null;
 
     #[ORM\Column(nullable: true)]
     #[Groups('place')]
@@ -287,12 +287,12 @@ class Place
 
     public function getOpeningHours(): ?string
     {
-        return $this->opening_hours;
+        return $this->openingHours;
     }
 
-    public function setOpeningHours(?string $opening_hours): static
+    public function setOpeningHours(?string $openingHours): static
     {
-        $this->opening_hours = $opening_hours;
+        $this->openingHours = $openingHours;
 
         return $this;
     }

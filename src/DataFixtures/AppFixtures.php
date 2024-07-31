@@ -64,7 +64,7 @@ class AppFixtures extends Fixture
             $place->setPhone($dataPlace['phone']);
             $place->setDescription($faker->paragraph(8));
             $place->setPrice($dataPlace['price']);
-            $place->setOpeningHours($dataPlace['opening_hours']);
+            $place->setOpeningHours($dataPlace['openingHours']);
             $place->setRating($faker->randomFloat(1, 1, 5));
             $place->setAccessibility($dataPlace['accessibility']);
             $place->setGuidedTour($dataPlace['guided_tour']);
