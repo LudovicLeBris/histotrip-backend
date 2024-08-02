@@ -1,12 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlaceController!{% endblock %}
+{% block title %}Histotrip - lieux{% endblock %}
 
 {% block body %}
-<ul>
-    {% for place in places %}
-    <li>{{ place.name }}</li>
-    {% endfor %}
-</ul>
+
+<main class="px-8">
+
+    <table class="w-full">
+        <thead class="bg-lime-200">
+            <tr>
+                <th>Id</th>
+                <th class="py-2">Nom du lieu</th>
+                <th>Ville</th>
+                <th>Valide</th>
+                <th>Commandes</th>
+            </tr>
+        </thead>
+        <tbody>
+        {%  for place in places %}
+            <tr class="even:bg-gray-200">
+                <td>
+                    {{ place.id }}
+                </td>
+                <td class="py-2">
+                    {{ place.name }}
+                </td>
+                <td>
+                    {{ place.city }}
+                </td>
+                <td class="text-center">
+                    {{ place.isValid }}
+                </td>
+                <td class="text-center">
+                    <a href="{{ path('app_admin_place_show', {placeId: place.id}) }}">show</a>
+                     - edit
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</main>
     
 {% endblock %}
