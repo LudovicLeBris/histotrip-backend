@@ -6,8 +6,8 @@ use App\Entity\Place;
 use App\Form\PlaceType;
 use App\Repository\PlaceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PlaceController extends AbstractController
@@ -51,10 +51,18 @@ class PlaceController extends AbstractController
     }
 
     #[Route('admin/places/add', name: 'app_admin_place_add')]
-    public function add(): Response
+    public function add(Request $request): Response
     {
         $place = new Place();
+        $place->setIsValid(true);
+        $place->setCreatedAt(new \DateTimeImmutable('now'));
         $placeForm = $this->createForm(PlaceType::class, $place);
+
+        $placeForm->handleRequest($request);
+        if ($placeForm->isSubmitted() && $placeForm->isValid()) {
+            $placeSubmitted = $placeForm->getData();
+            dd($placeSubmitted);
+        }
 
         return $this->render('admin/place/add.html.twig', ['placeForm' => $placeForm]);
     }
