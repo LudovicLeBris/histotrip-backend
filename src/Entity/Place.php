@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
         new Get(
@@ -47,6 +48,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [ new GetCollection(normalizationContext: ['groups' => ['places']]) ],
 )]
 #[ApiFilter(BooleanFilter::class, properties: ['pictures.isMain'])]
+#[ApiFilter(BooleanFilter::class, properties: ['isValid'])]
 #[ApiFilter(SearchFilter::class, properties: ['centuries.period'], strategy: 'exact')]
 #[ApiFilter(CoordinateFilter::class)]
 class Place
@@ -362,9 +364,10 @@ class Place
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): static
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

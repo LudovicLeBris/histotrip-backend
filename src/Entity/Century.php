@@ -48,6 +48,11 @@ class Century
         $this->places = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->century . " - " . $this->period;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
