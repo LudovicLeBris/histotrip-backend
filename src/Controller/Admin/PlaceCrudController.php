@@ -29,6 +29,7 @@ class PlaceCrudController extends AbstractCrudController
             ->setPageTitle('new', "Création d'un lieu")
             ->setPageTitle('edit', "Édition d'un lieu")
             ->setSearchFields(['name', 'city', 'postcode'])
+            ->setDefaultSort(['createdAt' => 'DESC'])
         ;
     }
 

@@ -43,7 +43,8 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Histotrip - administration')
-
+            ->renderContentMaximized()
+            ->renderSidebarMinimized()
         ;
     }
 
@@ -62,6 +63,8 @@ class DashboardController extends AbstractDashboardController
         return Crud::new()
             ->setPaginatorPageSize(30)
             ->hideNullValues()
+            ->renderContentMaximized()
+            ->renderSidebarMinimized()
         ;
     }
 }
