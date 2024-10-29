@@ -48,6 +48,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [ new GetCollection(normalizationContext: ['groups' => ['places']]) ],
 )]
 #[ApiFilter(BooleanFilter::class, properties: ['pictures.isMain'])]
+#[ApiFilter(BooleanFilter::class, properties: ['isValid'])]
 #[ApiFilter(SearchFilter::class, properties: ['centuries.period'], strategy: 'exact')]
 #[ApiFilter(CoordinateFilter::class)]
 class Place
