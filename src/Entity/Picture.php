@@ -39,6 +39,11 @@ class Picture
     #[ORM\ManyToOne(inversedBy: 'pictures')]
     private ?Place $place = null;
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
