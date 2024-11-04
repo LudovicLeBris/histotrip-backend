@@ -55,7 +55,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categories', 'fas fa-icons', Category::class);
         yield MenuItem::linkToCrud('Tags', 'fa-solid fa-tags', Tag::class);
         yield MenuItem::linkToCrud('Siècles', 'fa-solid fa-calendar', Century::class);
-        yield MenuItem::linkToCrud('Images', 'fa-solid fa-image', Picture::class);
+        // yield MenuItem::linkToCrud('Images', 'fa-solid fa-image', Picture::class);
     }
 
     public function configureCrud(): Crud

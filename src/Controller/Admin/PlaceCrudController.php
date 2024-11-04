@@ -10,8 +10,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -41,6 +43,7 @@ class PlaceCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+            ImageField::new('getMainPicture', 'Image')->setUploadDir('public/images/places')->hideOnForm()->setRequired(false),
             FormField::addFieldset('Titre'),
             TextField::new('name', "Nom"),
             SlugField::new('slug', "slug")->setTargetFieldName('name'),
@@ -66,6 +69,15 @@ class PlaceCrudController extends AbstractCrudController
             AssociationField::new('categories', "Catégories")->hideOnIndex()->setSortProperty('category'),
             AssociationField::new('centuries', "Siècles - périodes")->hideOnIndex(),
             AssociationField::new('tags', "Tags")->hideOnIndex(),
+            FormField::addFieldset('Images')->collapsible()->onlyWhenUpdating(),
+            CollectionField::new('pictures', "Images")
+                ->allowAdd()
+                ->allowDelete()
+                ->setEntryIsComplex(true)
+                ->useEntryCrudForm()
+                ->setColumns(12)
+                ->hideWhenCreating()
+                ->setFormTypeOptions(['by_reference' => false])
         ];
     }
 
@@ -83,6 +95,8 @@ class PlaceCrudController extends AbstractCrudController
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->add(Crud::PAGE_NEW, Action::SAVE_AND_CONTINUE)
+            ->remove(Crud::PAGE_NEW, Action::SAVE_AND_RETURN)
+            ->reorder(Crud::PAGE_NEW, [Action::SAVE_AND_ADD_ANOTHER, Action::SAVE_AND_CONTINUE])
         ;
     }
 

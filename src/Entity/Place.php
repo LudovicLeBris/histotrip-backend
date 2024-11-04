@@ -150,7 +150,7 @@ class Place
     /**
      * @var Collection<int, Picture>
      */
-    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place')]
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place', cascade: ['persist'])]
     #[Groups(['place', 'places'])]
     private Collection $pictures;
 
@@ -525,5 +525,16 @@ class Place
         $this->website = $website;
 
         return $this;
+    }
+
+    public function getMainPicture(): ?string
+    {
+        $picture = $this->pictures->findFirst(function(int $key, Picture $value): bool {
+            return $value->getIsMain();
+        });
+        if($picture) {
+            return $picture->getCdnUrl();
+        }
+        return null;
     }
 }
