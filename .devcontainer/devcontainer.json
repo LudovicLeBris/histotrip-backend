@@ -17,6 +17,8 @@
     "forwardPorts": [
         "dev:8000",
         "mailer:8025",
-        "phpmyadmin:8081"
+        "phpmyadmin:8081",
+        "minio:9000",
+        "minio:9001"
     ]
 }
