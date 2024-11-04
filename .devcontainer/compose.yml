@@ -5,8 +5,8 @@ services:
     command: sleep infinity
     volumes:
       - ../.:/workspace
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
     environment:
       DATABASE_URL: "mysql://root@database:3306/histotrip?serverVersion=8.2.0&charset=utf8mb4"
       MAILER_DSN: "smtp://mailer:1025"
@@ -35,6 +35,18 @@ services:
       - 8081:80
     environment:
       PMA_HOST: database
+
+  minio:
+    image: minio/minio
+    environment:
+      MINIO_ROOT_USER: access1234
+      MINIO_ROOT_PASSWORD: secret1234
+    volumes:
+      - ./data/minio:/data
+    command: server /data --console-address ":9001"
+    ports:
+      - 9000:9000
+      - 9001:9001
 
 volumes:
   db-data:
