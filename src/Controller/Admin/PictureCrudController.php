@@ -27,7 +27,6 @@ class PictureCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Images')
             ->setPageTitle('new', "Création d'une image")
             ->setPageTitle('edit', "Édition d'une image")
-            ->setSearchFields(['name', 'pictureLegend'])
         ;
     }
 
@@ -35,7 +34,6 @@ class PictureCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name', "Nom"),
             TextField::new('pictureLegend', "Légende de l'image")->hideOnIndex(),
             TextField::new('imageFile', 'Upload')->setFormType(VichImageType::class)->onlyOnForms(),
             ImageField::new('imageName', 'Fichier')->setBasePath('http://127.0.0.1:9000/place-pictures/')->hideOnForm(),

@@ -18,10 +18,6 @@ class Picture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 64)]
-    #[Groups(['place', 'places'])]
-    private ?string $name = null;
-
     #[ORM\Column(length: 128)]
     #[Groups('place')]
     private ?string $pictureLegend = null;
@@ -30,7 +26,7 @@ class Picture
     #[Groups(['place', 'places'])]
     private ?string $cdnUrl = null;
 
-    #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'name')]
+    #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length:255, nullable:true)]
@@ -51,24 +47,12 @@ class Picture
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->imageName;
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getPictureLegend(): ?string
@@ -109,13 +93,15 @@ class Picture
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(?File $imageFile = null): static
     {
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
             $this->updatedAt = new \DateTimeImmutable();
         }
+
+        return $this;
     }
 
     public function getImageName(): ?string
@@ -123,9 +109,11 @@ class Picture
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName): void
+    public function setImageName(?string $imageName): static
     {
         $this->imageName = $imageName;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

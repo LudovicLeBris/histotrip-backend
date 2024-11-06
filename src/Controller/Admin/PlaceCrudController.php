@@ -58,7 +58,7 @@ class PlaceCrudController extends AbstractCrudController
             NumberField::new('latitude', "Latitude")->hideOnIndex()->setColumns(3),
             NumberField::new('longitude', "Longitude")->hideOnIndex()->setColumns(3),
             FormField::addFieldset('Informations pratiques')->collapsible()->renderCollapsed(),
-            UrlField::new('website', "Site internet")->hideOnIndex(),
+            UrlField::new('website', "Site internet")->hideOnIndex()->setFormTypeOption('default_protocol', 'http'),
             TextField::new('phone', "Téléphone")->hideOnIndex(),
             TextEditorField::new('description', "Description")->hideOnIndex(),
             TextEditorField::new('price', "Prix")->hideOnIndex(),
