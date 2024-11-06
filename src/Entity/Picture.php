@@ -18,7 +18,7 @@ class Picture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 128)]
+    #[ORM\Column(length: 128, nullable: true)]
     #[Groups('place')]
     private ?string $pictureLegend = null;
 
