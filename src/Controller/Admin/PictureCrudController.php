@@ -34,21 +34,14 @@ class PictureCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+            ImageField::new('getCdnUrl', 'Image')->setUploadDir('public/images/places')->hideOnForm()->setRequired(false),
             TextField::new('pictureLegend', "Légende de l'image")->hideOnIndex(),
             TextField::new('imageFile', 'Upload')->setFormType(VichImageType::class)->onlyOnForms(),
-            ImageField::new('imageName', 'Fichier')->setBasePath('http://127.0.0.1:9000/place-pictures/')->hideOnForm(),
-            UrlField::new('cdnUrl', "Url de l'image")->hideOnIndex()->setFormTypeOption('default_protocol', 'http'),
+            ImageField::new('imageName', 'Fichier')->setBasePath('http://127.0.0.1:9000/place-pictures/')->hideOnForm()->hideOnIndex(),
+            UrlField::new('cdnUrl', "Url de l'image")->setFormTypeOption('default_protocol', 'http')->hideOnIndex()->hideOnForm(),
             BooleanField::new('isMain', "Image principale"),
             AssociationField::new('place', "Lieu")->hideOnForm(),
         ];
-    }
-
-    public function createEntity(string $entityFqcn)
-    {       
-        $picture = new Picture();
-        $picture->setCreatedAt(new \DateTimeImmutable());
-
-        return $picture;
     }
 
 }

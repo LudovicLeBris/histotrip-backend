@@ -2,8 +2,14 @@ vich_uploader:
     db_driver: orm
     storage: flysystem
 
+    use_flysystem_to_resolve_uri: true
+
     mappings:
        pictures:
-           uri_prefix: /images/places
-           upload_destination: aws.storage
-           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            uri_prefix: /images/places
+            upload_destination: aws.storage
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+           
+            inject_on_load: true
+            delete_on_update: true
+            delete_on_remove: true
