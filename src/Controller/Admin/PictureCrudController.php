@@ -38,8 +38,8 @@ class PictureCrudController extends AbstractCrudController
             TextField::new('name', "Nom"),
             TextField::new('pictureLegend', "Légende de l'image")->hideOnIndex(),
             TextField::new('imageFile', 'Upload')->setFormType(VichImageType::class)->onlyOnForms(),
-            ImageField::new('imageName', 'Fichier')->setBasePath('/images/places')->hideOnForm(),
-            UrlField::new('cdnUrl', "Url de l'image")->hideOnIndex(),
+            ImageField::new('imageName', 'Fichier')->setBasePath('http://127.0.0.1:9000/place-pictures/')->hideOnForm(),
+            UrlField::new('cdnUrl', "Url de l'image")->hideOnIndex()->setFormTypeOption('default_protocol', 'http'),
             BooleanField::new('isMain', "Image principale"),
             AssociationField::new('place', "Lieu")->hideOnForm(),
         ];

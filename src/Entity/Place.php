@@ -150,7 +150,7 @@ class Place
     /**
      * @var Collection<int, Picture>
      */
-    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'place', cascade: ['persist', 'remove'])]
     #[Groups(['place', 'places'])]
     private Collection $pictures;
 
