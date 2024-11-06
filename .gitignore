@@ -13,7 +13,3 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
-
-###> minio data volume ###
-/.devcontainer/data/
-###< minio data volume ###
