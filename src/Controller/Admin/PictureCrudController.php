@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class PictureCrudController extends AbstractCrudController
 {
@@ -36,7 +37,24 @@ class PictureCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             ImageField::new('getCdnUrl', 'Image')->setUploadDir('public/images/places')->hideOnForm()->setRequired(false),
             TextField::new('pictureLegend', "Légende de l'image")->hideOnIndex(),
-            TextField::new('imageFile', 'Upload')->setFormType(VichImageType::class)->onlyOnForms(),
+            TextField::new('imageFile', 'Upload')
+                ->setFormType(VichImageType::class)
+                ->onlyOnForms()
+                ->setFormTypeOptions([
+                    "attr" => [
+                        'accept' => 'image/jpeg, image/png, image/gif, image/webp'
+                    ],
+                    'constraints' => [
+                        new Assert\File([
+                            'mimeTypes' => [
+                                'image/jpeg',
+                                'image/png',
+                                'image/gif',
+                                'image/webp',
+                            ]
+                        ])
+                    ]
+                ]),
             ImageField::new('imageName', 'Fichier')->setBasePath('http://127.0.0.1:9000/place-pictures/')->hideOnForm()->hideOnIndex(),
             UrlField::new('cdnUrl', "Url de l'image")->setFormTypeOption('default_protocol', 'http')->hideOnIndex()->hideOnForm(),
             BooleanField::new('isMain', "Image principale"),
