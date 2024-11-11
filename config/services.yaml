@@ -29,5 +29,5 @@ services:
               endpoint: 'http://minio:9000'
               use_path_style_endpoint: true
               credentials: 
-                key: 'o6yh6SBTu0upr9vH6etV'
-                secret: 'xvsZ8e90gJJzMJWeZuc7ALZQBnIaaPyGgEp8GsZ8'
+                key: '%env(S3_KEY)%'
+                secret: '%env(S3_SECRET)%'

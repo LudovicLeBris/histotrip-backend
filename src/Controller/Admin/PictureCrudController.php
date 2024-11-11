@@ -55,7 +55,7 @@ class PictureCrudController extends AbstractCrudController
                         ])
                     ]
                 ]),
-            ImageField::new('imageName', 'Fichier')->setBasePath('http://127.0.0.1:9000/place-pictures/')->hideOnForm()->hideOnIndex(),
+            ImageField::new('imageName', 'Fichier')->setBasePath($_ENV['S3_ENDPOINT'] . '/'. $_ENV['S3_BUCKET'] .'/')->hideOnForm()->hideOnIndex(),
             UrlField::new('cdnUrl', "Url de l'image")->setFormTypeOption('default_protocol', 'http')->hideOnIndex()->hideOnForm(),
             BooleanField::new('isMain', "Image principale"),
             AssociationField::new('place', "Lieu")->hideOnForm(),
