@@ -35,7 +35,7 @@ class PictureCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            ImageField::new('getCdnUrl', 'Image')->setUploadDir('public/images/places')->hideOnForm()->setRequired(false),
+            ImageField::new('getCdnUrl', 'Image')->setUploadDir('public/images')->hideOnForm()->setRequired(false),
             TextField::new('pictureLegend', "Légende de l'image")->hideOnIndex(),
             TextField::new('imageFile', 'Upload')
                 ->setFormType(VichImageType::class)
@@ -53,7 +53,13 @@ class PictureCrudController extends AbstractCrudController
                                 'image/webp',
                             ]
                         ])
-                    ]
+                    ],
+                    'download_uri' => static function (Picture $picture) {
+                        return $picture->getCdnUrl();
+                    },
+                    'image_uri' => static function (Picture $picture, $resolvedUri) {
+                        return $picture->getCdnUrl();
+                    }
                 ]),
             ImageField::new('imageName', 'Fichier')->setBasePath($_ENV['S3_ENDPOINT'] . '/'. $_ENV['S3_BUCKET'] .'/')->hideOnForm()->hideOnIndex(),
             UrlField::new('cdnUrl', "Url de l'image")->setFormTypeOption('default_protocol', 'http')->hideOnIndex()->hideOnForm(),
